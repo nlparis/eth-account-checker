@@ -1,3 +1,16 @@
+# Proving to myself that a private key is safe
+With a seed phrase, you can derive a private key. With a private key, you can derive a public key. And with that, an address. It is a bit tough to wrap my head around the fact that my private key is just one big number, and with that one number someone could have complete control over my assets. (I reckon I should start getting more concerned about my social security number, which is a lot smaller and much easier to guess.) To prove to myself that my keys are safe, I wrote a program that uses the same algorithm as Ethereum to generate private keys, derive the public keys and addresses, and use the etherscan api to see if any of the addresses generated contain any funds. The idea is that if I can randomly generate an address that contains funds, I would have control over those and thus have free money. If I am unsuccessful in generating addresses with funds, then I am successful in proving how difficult it is to just guess someone's private key in order to obtain access to their funds. 
+
+# How to run yourself
+Credit to Vincent Kobel, who wrote most of this repo and most of this readme. In order to run this program you should first create an account on Etherscan.io and obtain an API key token. Place this token in a file called key.txt in the root of this repo and you should be all set. To create addresses and check if they have funds run 
+```python
+python3 addycheck.py 
+```
+
+The Etherscan API allows 5 calls/second, and the balance request supports 20 addresses per call. This means we can check roughly 100 addresses per second. (The actual rate is a bit slower due to the network response time and the time to generate the keys.)
+
+If this code ever prints anything, congratulations! You can now steal someone's funds. Unfortunately the odds of this happening are incomprehensibly low.
+
 # Ethereum wallet generator
 Simple script collection, currently in bash and python format, to generate a complete offline Ethereum wallet by creating an ECDSA keypair and derive its Ethereum address.
 
